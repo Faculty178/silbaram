@@ -10,7 +10,7 @@
 <body>
 
 <div layout:fragment="Content" class="cart_box">
-    <form action="/silbaram/payment/cart_connect_pay" method="post" class="cart_form">
+    <form action="/payment/cart_connect_pay" method="post" class="cart_form">
         <div class="cart_list">
             <div class="button_area">
                 <input type="button" value="선택 삭제" class="delete-select-product">
@@ -57,7 +57,7 @@
             const target = e.target;
             const lkid = target.getAttribute("value");
             frmView.lkid.value = lkid;
-            frmView.action = '/silbaram/cart/deleteCart';
+            frmView.action = '/cart/deleteCart';
             frmView.method = 'post';
             frmView.submit();
         });
@@ -78,7 +78,7 @@
 
         if (inputsToRemove != null){
             // frmView.lkids.value = lkids;
-            frmView.action = '/silbaram/cart/deleteCartList';
+            frmView.action = '/cart/deleteCartList';
             frmView.method = 'post';
             frmView.submit();
         }

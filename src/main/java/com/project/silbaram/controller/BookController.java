@@ -115,6 +115,8 @@ public class BookController {
           model.addAttribute("isModify", isModify);
           model.addAttribute("mdrv", review);
         }
+
+        log.info(bookDTO);
     }
 
 

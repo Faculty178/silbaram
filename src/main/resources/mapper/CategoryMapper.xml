@@ -6,4 +6,10 @@
     <select id="selectAll" resultType="com.project.silbaram.vo.CategoryVO">
         SELECT * FROM `category`
     </select>
+
+    <select id="getById" resultType="com.project.silbaram.vo.CategoryVO">
+        SELECT *
+        FROM `category`
+        WHERE `cid` = #{cid}
+    </select>
 </mapper>

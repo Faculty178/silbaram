@@ -10,6 +10,6 @@ import java.util.List;
 
 @Mapper
 public interface LanguageDAO {
-    LanguageVO getLanguageById(Long lgid);
+    LanguageVO getLanguageById(Long lid);
     List<LanguageDTO> selectAll();
 }

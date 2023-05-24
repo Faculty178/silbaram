@@ -126,48 +126,14 @@
         having count(c.cateName) > 0
     </select>
 
-    <resultMap id="bookResultMap" type="com.project.silbaram.vo.BookVO">
-        <id column="bkid" property="bkid" />
-        <result column="name" property="name" />
-        <result column="writer" property="writer" />
-        <result column="publisher" property="publisher" />
-        <result column="price" property="price" />
-        <result column="synopsis" property="synopsis" />
-        <result column="pages" property="pages" />
-        <result column="isbnNum" property="isbnNum" />
-        <result column="cid" property="cid" />
-        <result column="fileSize" property="fileSize" />
-        <result column="lid" property="lid" />
-        <result column="voiceLength" property="voiceLength" />
-        <result column="bookUrl" property="bookUrl" />
-        <result column="bookTextUrl" property="bookTextUrl" />
-        <result column="bookImage" property="bookImage" />
-
-        <association property="categoryVO" javaType="com.project.silbaram.vo.CategoryVO">
-            <result column="cid" property="cid" />
-            <result column="cateName" property="cateName" />
-        </association>
-
-        <association property="languageVO" javaType="com.project.silbaram.vo.LanguageVO">
-            <result column="language" property="language" />
-            <result column="lgid" property="lgid" />
-
-        </association>
-    </resultMap>
-
-    <select id="adminbookList" resultMap="bookResultMap" resultType="com.project.silbaram.vo.BookVO">
-        SELECT b.bkid, b.name, b.writer, b.publisher, b.price, b.synopsis, b.pages,
-        b.isbnNum, b.fileSize, b.voiceLength, b.bookUrl, b.bookTextUrl, b.bookImage, b.cid,b.lid,
-        c.cateName, c.cid, l.language, l.lgid
-        FROM book b
-        LEFT JOIN category c ON b.cid = c.cid
-        LEFT JOIN language l ON b.lid = l.lgid
+    <select id="adminbookList" resultType="com.project.silbaram.vo.BookVO">
+        SELECT *
+        FROM book
         <include refid="search"></include>
-        order by b.bkid desc limit #{skip, jdbcType=INTEGER}, #{size, jdbcType=INTEGER}
+        order by bkid desc limit #{skip, jdbcType=INTEGER}, #{size, jdbcType=INTEGER}
     </select>
-    <!--mybatis는 getXXX, setXXX을 통해서 동작하기때문에 skip은 getSkip()을 호출-->
 
-    <select id="getOneBookById" resultMap="bookResultMap" parameterType="Long" resultType="com.project.silbaram.vo.BookVO">
+    <select id="getOneBookById" parameterType="Long" resultType="com.project.silbaram.vo.BookVO">
         SELECT b.bkid, b.name, b.writer, b.publisher, b.price, b.synopsis, b.pages,
                b.isbnNum, b.fileSize, b.voiceLength, b.bookUrl, b.bookTextUrl, b.bookImage,
                c.cateName, l.language
@@ -176,5 +142,7 @@
                  JOIN language l ON b.lid = l.lgid
         WHERE `bkid` = #{bkid}
     </select>
+    <!--mybatis는 getXXX, setXXX을 통해서 동작하기때문에 skip은 getSkip()을 호출-->
+
 
 </mapper>

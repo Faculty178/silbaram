@@ -1,6 +1,8 @@
 package com.project.silbaram.service;
 
 import com.project.silbaram.dao.BookDAO;
+import com.project.silbaram.dao.CategoryDAO;
+import com.project.silbaram.dao.LanguageDAO;
 import com.project.silbaram.dto.BookDTO;
 import com.project.silbaram.dto.PageRequestDTO;
 import com.project.silbaram.dto.PageResponseDTO;
@@ -25,6 +27,9 @@ public class BookServiceImpl implements BookService {
 
     private final BookDAO bookDAO;
     private final ModelMapper modelMapper;
+
+    private final LanguageDAO languageDAO;
+    private final CategoryDAO categoryDAO;
 
     @Override
     public void insertBook(BookDTO bookDTO) {
@@ -65,9 +70,6 @@ public class BookServiceImpl implements BookService {
     public void deleteBookById(Long bkid) {
         bookDAO.deleteBookById(bkid);
     }
-
-
-
 
 
     @Override
@@ -138,22 +140,19 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public PageResponseDTO<BookDTO> adminBookList(PageRequestDTO pageRequestDTO) {
-        log.info("service - list");
-        // !! 조건 검색 쿼리로 변경
-        // List<BoardVO> voList = boardDAO.selectAll();
-        List<BookVO> voList = bookDAO.adminbookList(pageRequestDTO);
+
+        log.info("ReviewList,,,");
+        List<BookDTO> voList = bookDAO.adminbookList(pageRequestDTO).stream()
+                .map(dto -> modelMapper.map(dto, BookDTO.class)).collect(Collectors.toList());
         log.info(voList);
-        List<BookDTO> dtoList = new ArrayList<>();
-        for (BookVO bookVO : voList) {
-            dtoList.add(modelMapper.map(bookVO, BookDTO.class));
+
+        for (BookDTO dtoList : voList) {
+            dtoList.setCategoryVO(categoryDAO.getById(dtoList.getCid()));
+            dtoList.setLanguageVO(languageDAO.getLanguageById(dtoList.getLid()));
         }
         int total = bookDAO.getCount(pageRequestDTO);
 
-        PageResponseDTO<BookDTO> pageResponseDTO = PageResponseDTO.<BookDTO>withAll()
-                .dtoList(dtoList)
-                .total(total)
-                .pageRequestDTO(pageRequestDTO)
-                .build();
+        PageResponseDTO<BookDTO> pageResponseDTO = new PageResponseDTO<>(pageRequestDTO, voList, total);
         return pageResponseDTO;
 
     }

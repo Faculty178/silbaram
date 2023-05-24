@@ -54,20 +54,20 @@ public class AdminBookController {
 
     @PostMapping("/add_book")
     public String addBookPOST(@Valid BookDTO bookDTO, BindingResult bindingResult,
-                              @RequestParam("name") String name, @RequestParam("lgid") String lgid,
+                              @RequestParam("name") String name, @RequestParam("lid") String lid,
                               @RequestParam("cid") String cid, Model model) throws IOException {
         //...
 
         Long categoryId = Long.parseLong(cid);
-        Long languageId = Long.parseLong(lgid);
+//        Long languageId = Long.parseLong(lid);
 
         bookDTO.setCid(categoryId);
-        bookDTO.setLid(languageId);
+//        bookDTO.setLid(languageId);
 
         // BookVO 객체 생성 및 필드 설정
         BookVO book = BookVO.builder()
                 .name(name)
-                .lid(languageId)
+//                .lid(languageId)
                 .cid(categoryId)
                 // 다른 필드들도 설정해야 함
                 .build();
