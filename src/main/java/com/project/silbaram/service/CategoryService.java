@@ -9,4 +9,5 @@ import java.util.List;
 @Service
 public interface CategoryService {
     List<CategoryDTO> selectAll();
+    CategoryDTO getById(Long cid);
 }

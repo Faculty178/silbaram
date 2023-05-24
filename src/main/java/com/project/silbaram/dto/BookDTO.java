@@ -36,6 +36,8 @@ public class BookDTO {
     private String bookUrl;
     private String bookTextUrl;
     private String bookImage; //bookUrl과 같이 불러옴
+    private String cateName;
+    private String language;
 
     private CategoryVO categoryVO;
     private CategoryDTO categoryDTO;

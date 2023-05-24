@@ -39,27 +39,25 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>bkid</th>
-                    <th>name</th>
-                    <th>writer</th>
-                    <th>publisher</th>
-                    <th>price</th>
-                    <th>synopsis</th>
-                    <th>pages</th>
-                    <th>isbnNum</th>
-                    <th>category</th>
-                    <th>fileSize</th>
-                    <th>language</th>
-                    <th>voiceLength</th>
-                    <th>bookUrl</th>
-                    <th>bookTextUrl</th>
-                    <th>bookImage</th>
+                    <th scope="col">name</th>
+                    <th scope="col">writer</th>
+                    <th scope="col">publisher</th>
+                    <th scope="col">price</th>
+                    <th scope="col">synopsis</th>
+                    <th scope="col">pages</th>
+                    <th scope="col">isbnNum</th>
+                    <th scope="col">category</th>
+                    <th scope="col">fileSize</th>
+                    <th scope="col">language</th>
+                    <th scope="col">voiceLength</th>
+                    <th scope="col">bookUrl</th>
+                    <th scope="col">bookTextUrl</th>
+                    <th scope="col">bookImage</th>
                 </tr>
                 </thead>
 
                 <tbody th:with="link = ${pageRequestDTO.getLink()}">
                 <tr th:each="dto:${responseDTO.dtoList}">
-                    <th>[[${dto.bkid}]]</th>
                     <td><a th:href="|@{/admin/admin_book_info(bkid =${dto.bkid})}&${link}|"> [[${dto.name}]]</a></td>
                     <td>[[${dto.writer}]]</td>
                     <td>[[${dto.publisher}]]</td>
@@ -67,9 +65,9 @@
                     <td>[[${dto.synopsis}]]</td>
                     <td>[[${dto.pages}]]</td>
                     <td>[[${dto.isbnNum}]]</td>
-                    <td>[[${dto.cid}]]</td>
+                    <td>[[${dto.categoryVO.cateName}]]</td>
                     <td>[[${dto.fileSize}]]</td>
-                    <td>[[${dto.lid}]]</td>
+                    <td>[[${dto.languageVO.language}]]</td>
                     <td>[[${dto.voiceLength}]]</td>
                     <td>[[${dto.bookUrl}]]</td>
                     <td>[[${dto.bookTextUrl}]]</td>

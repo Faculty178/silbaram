@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface LanguageService {
 
-    Long getLgidByName(Long lgid);
+    LanguageDTO getLanguageById(Long lgid);
 
     List<LanguageDTO> selectAll();
 }

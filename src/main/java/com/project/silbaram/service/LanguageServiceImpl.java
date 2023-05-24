@@ -19,12 +19,13 @@ public class LanguageServiceImpl implements LanguageService {
     private final ModelMapper modelMapper;
 
     @Override
-    public Long getLgidByName(Long lgid) {
+    public LanguageDTO getLanguageById(Long lgid){
         LanguageVO languageVO = languageDAO.getLanguageById(lgid);
-        if (languageVO == null) {
-            throw new IllegalArgumentException("Invalid language: " + lgid);
-        }
-        return languageVO.getLgid();
+        log.info(languageVO);
+        LanguageDTO languageDTO = modelMapper.map(languageVO, LanguageDTO.class);
+        log.info(languageDTO);
+
+        return languageDTO;
     }
 
     @Override
