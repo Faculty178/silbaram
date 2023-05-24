@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>INDEX</title>
+    <link th:inline="css" th:href="@{/css/index_style.css}" rel="stylesheet">
 </head>
 <body>
     <div layout:fragment="nav">
@@ -41,26 +42,26 @@
         <div class="jumpTo">
             <div id="board">
                 <a href="/board/request_book_list">
-                    <img class="icons" src="">
+                    <img class="icons" th:src="@{/resources/lightbulb.png}">
                     <span>책 요청<br>모아보기</span>
                 </a>
             </div>
             <div id="best">
                 <a href="/products/list">
-                    <img class="icons" src="">
+                    <img class="icons" th:src="@{/resources/bestseller.png}">
                     <span>베스트셀러</span>
                 </a>
             </div>
             <div id="newbooks">
                 <a href="/products/list">
-                    <img class="icons" src="">
+                    <img class="icons" th:src="@{/resources/new.png}">
                     <span>신간도서</span>
                 </a>
             </div>
             <div id="qna">
                 <a th:href="@{/templates/board/list_qna}">
-                    <img class="icons" src="">
-                    <span>1:1 문의하기</span>
+                    <img class="icons" th:src="@{/resources/conversation.png}">
+                    <span>1:1<br>문의하기</span>
                 </a>
             </div>
 

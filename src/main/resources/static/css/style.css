@@ -400,11 +400,12 @@
 }
 
 .jumpTo > div img{
-    width: 100%;
+    width: 70px;
     height: 70px;
     border-radius: 50%;
     object-fit: contain;
     background-color: #A4EBE1;
+    box-shadow: 3px 3px 3px #CCC;
 }
 
 .jumpTo > div span{
