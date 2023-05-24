@@ -64,7 +64,7 @@ public class MemberModifyController {
         // 로그인한 사용자는 비밀번호 변경 이동
         MemberDTO memberDTO = memberService.getMemberByMid(mid); // 회원정보를 조회함
         log.info(memberDTO);
-        if (memberDTO.getSocialLogin() == null || memberDTO.getSocialLogin() == "") {
+        if (memberDTO.getSocialLogin() == null || memberDTO.getSocialLogin().equals("0")) {
             model.addAttribute("memberDTO", memberDTO);
             return "member/reset_pw";
         }

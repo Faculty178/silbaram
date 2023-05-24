@@ -68,10 +68,10 @@
     color: #333
 }
 
-
 #signupBox div:nth-child(8) input{
     width: 30px;
     height: 30px;
+    -webkit-appearance: radio;
 }
 
 #signupBox div:nth-child(8) span{

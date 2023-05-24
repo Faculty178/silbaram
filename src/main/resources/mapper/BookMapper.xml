@@ -9,7 +9,7 @@
         INSERT INTO `book` (`name`, `writer`, `publisher`, `price`, `synopsis`, `pages`, `isbnNum`,
                             `cid`, `fileSize`, `lid`, `voiceLength`, `bookUrl`)
         VALUES (#{name}, #{writer}, #{publisher}, #{price}, #{synopsis}, #{pages}, #{isbnNum},
-                #{category}, #{fileSize}, #{language}, #{voiceLength}, #{bookUrl})
+                #{cid}, #{fileSize}, #{lid}, #{voiceLength}, #{bookUrl})
     </insert>
 
     <select id="getBookList" resultType="com.project.silbaram.vo.BookVO">

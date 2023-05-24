@@ -21,11 +21,6 @@
 }
 
 .find_box{
-    /*height: 580px;*/
-    /*width: 800px;*/
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*margin: 0 auto;*/
     width: 800px;
     height: 500px;
     margin: 0 auto 100px;
@@ -33,7 +28,16 @@
     border-radius: 15px;
     display: flex;
     box-shadow: 3px 3px 5px #93CAC2;
+}
 
+.find_pw_box{
+    width: 800px;
+    height: 680px;
+    margin: 0 auto 100px;
+    border: 1.5px solid #50CDBB;
+    border-radius: 15px;
+    display: flex;
+    box-shadow: 3px 3px 5px #93CAC2;
 }
 
 #loginBox{
@@ -54,22 +58,22 @@
     border-bottom-left-radius: 15px;
 }
 
-#findIdForm{
+#findIdForm, #findPwForm{
     height: 100%;
     width: 50%;
     padding: 40px;
 }
 
-#findIdForm div{
+#findIdForm div, #findPwForm div{
     display: flex;
     flex-direction: column;
 }
 
-#findIdForm div label{
+#findIdForm div label, #findPwForm div label{
     color: #777;
 }
 
-#findIdForm div input{
+#findIdForm div input, #findPwForm div input{
     -webkit-appearance: none;
     border:none;
     background-color: #E0F5F2;
@@ -80,7 +84,7 @@
     font-size: 15px;
 }
 
-.find-id-submit{
+.find-id-submit, .find-pw-submit{
     -webkit-appearance: none;
     height: 50px;
     border: 1px solid #50CDBB;
@@ -90,6 +94,10 @@
     font-weight: 700;
     margin-top: 50px;
     width: 100%;
+}
+
+.find-pw-submit{
+    margin-top: 30px;
 }
 
 #mail-Check-Btn{
@@ -105,4 +113,11 @@
     display: block;
     width: 100%;
     height: 40px;
+}
+
+#mail-check-warn, #pwValid, #pwSame{
+    display: block;
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
 }

@@ -71,10 +71,6 @@
     line-height: 45px;
 }
 
-#loginForm div:nth-child(4) input{
-    -webkit-appearance: checkbox;
-}
-
 #loginForm div:nth-child(5){
     flex-direction: row;
     justify-content: end;
@@ -98,4 +94,12 @@
     color: white;
     font-weight: 700;
     margin-top: 50px;
+}
+
+#loginForm div:nth-child(3){
+    align-items: flex-start;
+}
+
+#loginForm div:nth-child(3) input{
+    -webkit-appearance: checkbox;
 }
