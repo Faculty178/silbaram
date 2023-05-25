@@ -25,12 +25,14 @@ public class OrderController {
     private final OrderListServiceImpl orderListService;
 
     @GetMapping("/orderlist")
-    public void list(@Valid PageRequestDTO pageRequestDTO, BindingResult bindingResult, Model model, HttpSession httpSession){
+    public void list(@Valid PageRequestDTO pageRequestDTO, BindingResult bindingResult,
+                     Model model, HttpSession httpSession){
 
         if(bindingResult.hasErrors()) {
             pageRequestDTO = pageRequestDTO.builder().build();
         }
 
+        model.addAttribute("memberId", httpSession.getAttribute("mid"));
         model.addAttribute("responseDTO", orderListService.getList((Long) httpSession.getAttribute("mid"), pageRequestDTO));
         log.info(orderListService.getList((Long) httpSession.getAttribute("mid"), pageRequestDTO));
     }

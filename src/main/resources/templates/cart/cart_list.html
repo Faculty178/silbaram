@@ -16,7 +16,10 @@
                 <input type="button" value="선택 삭제" class="delete-select-product">
             </div>
             <div class="cart_item" th:each="dto: ${dtoList}">
-                <div class="check_box"><input type="checkbox" name="selected_book" class="delete-select-check" th:value="${dto.lkid}"></div>
+                <div class="check_box">
+                    <input type="checkbox" name="selected_book" class="delete-select-check" th:value="${dto.lkid}">
+                </div>
+
                 <div class="book_info">
                     <p class="book_title">책 제목: [[${dto.name}]]</p>
                     <p class="writer">작가: [[${dto.writer}]]</p>

@@ -54,6 +54,8 @@ dependencies {
     // https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
     implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.2.1'
 
+// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 
     // swagger-ui
 //    implementation 'io.springfox:springfox-boot-starter:3.0.0'
