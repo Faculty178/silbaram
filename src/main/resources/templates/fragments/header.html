@@ -40,6 +40,9 @@
                             <option value="w" th:selected="${pageRequestDTO.types == 'w'}">작가 검색</option>
                         </select>
                         <input type="text" name="keyword" th:value="${pageRequestDTO.keyword}" placeholder="검색내용을 입력해주세요">
+                        <button type="submit">
+                            <img th:src="@{/resources/search.png}" alt="Search">
+                        </button>
                     </div>
                     <div th:if="${pageRequestDTO == null}">
                         <select title="검색 유형" name="types">
@@ -47,11 +50,13 @@
                             <option value="n">제목 검색</option>
                             <option value="w">작가 검색</option>
                         </select>
+                        <input type="text" name="keyword" placeholder="검색내용을 입력해주세요">
+                        <button type="submit">
+                            <img th:src="@{/resources/search.png}" alt="Search">
+                        </button>
                     </div>
 
-                    <button type="submit">
-                        <img th:src="@{/resources/search.png}" alt="Search">
-                    </button>
+
                 </form>
             </div>
 

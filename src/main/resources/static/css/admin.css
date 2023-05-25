@@ -66,7 +66,7 @@ h5{
     margin-left: 70px;
 }
 
-.adminListForm{
+.adminListForm, .adminBookListForm{
     width: 1200px;
     height: 200px;
     margin: 50px auto;

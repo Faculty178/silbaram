@@ -14,7 +14,7 @@
 
         <h5>Admin Book List</h5>
 
-        <form action="/admin/admin_book_list" method="get" class="adminListForm">
+        <form action="/admin/admin_book_list" method="get" class="adminBookListForm">
             <input type="hidden" name="size" th:value="${pageRequestDTO.size}">
 
             <div class="searchBox">
@@ -29,9 +29,9 @@
             </div>
 
             <div class="buttonBox">
-                <button class="  searchBtn" type="submit">Search</button>
-                <button class="  clearBtn" type="button">Clear</button>
-                <button class="  writeBtn" type="button" th:href="${admin_book_add_book}">Write</button>
+                <button class="searchBtn" type="submit">Search</button>
+                <button class="clearBtn" type="button">Clear</button>
+                <button class="writeBtn" type="button" th:href="${admin_book_add_book}">Write</button>
             </div>
         </form>
 
@@ -122,7 +122,7 @@
         }
 
         const num = target.getAttribute("data-num");
-        const formObj = document.querySelector("form");
+        const formObj = document.querySelector(".adminBookListForm");
 
         formObj.innerHTML += `<input type='hidden' name='page' value='${num}'>`;
         formObj.submit();
