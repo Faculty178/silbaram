@@ -69,7 +69,6 @@ public class AdminBookController {
                 .name(name)
 //                .lid(languageId)
                 .cid(categoryId)
-                // 다른 필드들도 설정해야 함
                 .build();
 
         bookService.insertBook(bookDTO);
@@ -79,25 +78,19 @@ public class AdminBookController {
     @GetMapping("/admin_book_info")
     public String readOneBook(Long bkid, PageRequestDTO pageRequestDTO, Model model) {
         BookDTO bookDTO = bookService.getOneBookById(bkid);
+        PageResponseDTO responseDTO = bookService.adminBookList(pageRequestDTO);
         log.info(bookDTO);
         model.addAttribute("dto", bookDTO);
+        model.addAttribute("responseDTO", responseDTO);
 
         return "admin/admin_book_info";
     }
 
     @GetMapping("/modify_book")
     public String modifyBook(Long bkid, PageRequestDTO pageRequestDTO, Model model) {
-        BookDTO bookDTO = bookService.readOneBook(bkid);
+        BookDTO bookDTO = bookService.getOneBookById(bkid);
         log.info(bookDTO);
         model.addAttribute("dto", bookDTO);
-
-        List<CategoryDTO> categories = categoryService.selectAll();
-        log.info("categories..........." + categories);
-        model.addAttribute("categories", categories);
-
-        List<LanguageDTO> languageDTOList = languageService.selectAll();
-        log.info("languageList............" + languageDTOList);
-        model.addAttribute("languageDTOList", languageDTOList);
 
         return "/admin/modify_book";
     }
@@ -112,11 +105,11 @@ public class AdminBookController {
             return "redirect:/admin/modify_book?";
         }
         log.info(bookDTO);
-        bookService.modifyBook(bookDTO);
+        bookService.updateBook(bookDTO);
 
         redirectAttributes.addAttribute("bkid", bookDTO.getBkid());
 
-        return "redirect:/admin/admin_read_book?";
+        return "redirect:/admin/admin_book_info?";
     }
 
     @PostMapping("/remove")
@@ -131,3 +124,4 @@ public class AdminBookController {
     }
 
 }
+

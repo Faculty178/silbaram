@@ -33,6 +33,6 @@ public interface BoardDAO {
 
     List<BoardVO> listAll(PageRequestDTO pageRequestDTO);
 
-
+    BoardVO getOneBoardById(Long bdid);
 }
 //DAO = Mappe

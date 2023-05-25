@@ -22,7 +22,7 @@ public class AdminMemberController {
 
     @GetMapping("/admin_member_list")
     public void memberList(PageRequestDTO pageRequestDTO, Model model){
-        log.info("책 목록 " + pageRequestDTO);
+        log.info("사용자 리스트" + pageRequestDTO);
 
         //log.info("now {}", boardService.getNow());
         PageResponseDTO responseDTO = memberService.list(pageRequestDTO);

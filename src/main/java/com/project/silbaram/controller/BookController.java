@@ -71,13 +71,22 @@ public class BookController {
         BookDTO bookDTO = bookService.readOne(bkid);
         boolean isBuyer = false;
         boolean isWrite = false;
-        String bookImageUrl[] = bookDTO.getBookImage().split("/");
-        String bookImageFileName = bookImageUrl[bookImageUrl.length -1];
-        bookImageFileName = "/google/image/" + bookImageFileName;
 
-        String bookTxtUrl[] = bookDTO.getBookUrl().split("/");
-        String bookTxtFileName = bookTxtUrl[bookTxtUrl.length -1];
-        bookTxtFileName = "/synthesize/" + bookTxtFileName;
+        if(bookDTO.getBookImage() != null){
+            String bookImageUrl[] = bookDTO.getBookImage().split("/");
+            String bookImageFileName = bookImageUrl[bookImageUrl.length -1];
+            bookImageFileName = "/google/image/" + bookImageFileName;
+
+            model.addAttribute("bookImageFileName", bookImageFileName);
+        }
+
+        if(bookDTO.getBookUrl() != null){
+            String bookTxtUrl[] = bookDTO.getBookUrl().split("/");
+            String bookTxtFileName = bookTxtUrl[bookTxtUrl.length -1];
+            bookTxtFileName = "/synthesize/" + bookTxtFileName;
+
+            model.addAttribute("bookTxtFileName", bookTxtFileName);
+        }
 
         Object mid = session.getAttribute("mid");
         ReviewDTO review = new ReviewDTO();
@@ -105,8 +114,7 @@ public class BookController {
         model.addAttribute("isBuyer", isBuyer);
         model.addAttribute("isWrite", isWrite);
         model.addAttribute("dto", bookDTO);
-        model.addAttribute("bookImageFileName", bookImageFileName);
-        model.addAttribute("bookTxtFileName", bookTxtFileName);
+
         model.addAttribute("reviewCnt", reviewService.selectAllCountByBkid(bkid));
 
         boolean modifyMode = isModify.equals("true");

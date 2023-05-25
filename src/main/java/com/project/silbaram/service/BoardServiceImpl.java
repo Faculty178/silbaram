@@ -1,6 +1,7 @@
 package com.project.silbaram.service;
 
 import com.project.silbaram.dao.BoardDAO;
+import com.project.silbaram.dao.MemberDAO;
 import com.project.silbaram.dto.BoardDTO;
 import com.project.silbaram.dto.PageRequestDTO;
 import com.project.silbaram.dto.PageResponseDTO;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -21,7 +23,8 @@ public class BoardServiceImpl implements BoardService {
     private final BoardDAO boardDAO;
     //ModelMapper - dto를 vo로 변환
     private final ModelMapper modelMapper;
-
+    // admin
+    private final MemberDAO memberDAO;
 
     @Override
     public void register(BoardDTO boardDTO) {
@@ -121,25 +124,36 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public PageResponseDTO<BoardDTO> listAll(PageRequestDTO pageRequestDTO) {
-        log.info("service - list");
-        // !! 조건 검색 쿼리로 변경
-        // List<BoardVO> voList = boardDAO.selectAll();
-        List<BoardVO> voList = boardDAO.listAll(pageRequestDTO);
+        log.info("board - list");
+        List<BoardDTO> voList = boardDAO.listAll(pageRequestDTO).stream()
+                .map(dto -> modelMapper.map(dto, BoardDTO.class)).collect(Collectors.toList());
         log.info(voList);
-        List<BoardDTO> dtoList = new ArrayList<>();
-        for (BoardVO boardVO : voList) {
-            dtoList.add(modelMapper.map(boardVO, BoardDTO.class));
+
+        for (BoardDTO dtoList : voList) {
+            dtoList.setMemberVO(memberDAO.memberById(Long.parseLong(dtoList.getMemberId())));
         }
         int total = boardDAO.getCount(pageRequestDTO);
 
-        PageResponseDTO<BoardDTO> pageResponseDTO = PageResponseDTO.<BoardDTO>withAll()
-                .dtoList(dtoList)
-                .total(total)
-                .pageRequestDTO(pageRequestDTO)
-                .build();
+        PageResponseDTO<BoardDTO> pageResponseDTO = new PageResponseDTO<>(pageRequestDTO, voList, total);
         return pageResponseDTO;
-
     }
+
+    @Override
+    public BoardDTO getOneBoardById(Long bdid) {
+        BoardVO boardVO = boardDAO.getOneBoardById(bdid);
+        log.info("boardVO" + boardVO);
+        BoardDTO boardDTO = modelMapper.map(boardVO, BoardDTO.class);
+        boardDTO.setMemberVO(memberDAO.memberById(Long.parseLong(boardDTO.getMemberId())));
+        log.info("boardDTO" + boardDTO);
+
+        return boardDTO;
+    }
+
+    @Override
+    public void adminBoardRemove(Long bdid) {
+        boardDAO.delete(bdid);
+    }
+
 
 
 }

@@ -61,7 +61,7 @@ function pwCheck() {
 function checkNickName() {
     const id = $('#nickName').val(); //id값이 "userId"인 입력란의 값을 저장
     $.ajax({
-        url: "nickNameCheck", //Controller에서 요청 받을 주소
+        url: "/nickNameCheck", //Controller에서 요청 받을 주소
         type: "post", //POST 방식으로 전달
         data: id,
         dataType: "json", //서버로 돌려받는 값의 타입 지정

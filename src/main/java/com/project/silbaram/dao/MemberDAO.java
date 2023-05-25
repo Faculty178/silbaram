@@ -44,4 +44,8 @@ public interface MemberDAO {
 
     MemberVO selectMemberByEmail(String email);
 
+    //admin
+
+    MemberVO memberById(Long mid);
+
 }

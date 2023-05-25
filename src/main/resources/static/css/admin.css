@@ -154,6 +154,19 @@ td:hover:before {
     z-index: -1;
 }
 
+.pagination_member_list div, .pagination_admin_bookList div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top : 15px;
+}
 
+.pagination_member_list div li, .pagination_admin_bookList div li{
+    margin-right: 15px;
+}
+
+.pagination_member_list div li:last-child, .pagination_admin_bookList div li:last-child{
+    margin-right: 0;
+}
 
 

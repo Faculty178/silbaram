@@ -14,7 +14,7 @@
 
         <h5>User List</h5>
 
-        <form action="/admin/admin_book_list" method="get" class="adminListForm">
+        <form action="/admin/admin_book_list" method="get" class="adminListForm memberAdminForm">
             <input type="hidden" name="size" th:value="${pageRequestDTO.size}">
 
             <div class="searchBox">
@@ -31,7 +31,6 @@
             <div class="buttonBox">
                 <button class="btn btn-outline-secondary searchBtn" type="submit">Search</button>
                 <button class="btn btn-outline-secondary clearBtn" type="button">Clear</button>
-                <button class="btn btn-outline-secondary writeBtn" type="button" th:href="${admin_book_add_book}">Write</button>
             </div>
         </form>
 
@@ -82,15 +81,15 @@
             </table>
                     <!--페이지 버튼-->
 
-            <ul class="pagination flex-wrap">
+            <ul class="pagination_member_list">
                 <div th:if="${responseDTO.total > 0}">
-                    <li class="page-item" th:if="${responseDTO.prev}">
-                        <a class="page-link" th:data-num="${responseDTO.start - 1}">Previous</a>
+                    <li th:if="${responseDTO.prev}">
+                        <a th:data-num="${responseDTO.start - 1}">Previous</a>
                     </li>
                     <!--#numbers.sequence : 특정한 범위의 연속된 숫자를 만듦-->
                     <th:block th:each="i: ${#numbers.sequence(responseDTO.start, responseDTO.end)}">
-                        <li th:class="${responseDTO.page == i} ? 'page-item active' : 'page-item'">
-                            <a class="page-link" th:data-num="${i}">[[${i}]]</a>
+                        <li th:class="${responseDTO.page == i} ? 'active' : ''">
+                            <a th:data-num="${i}">[[${i}]]</a>
                             <!--data-num이라는 속성으로 페이지 처리-->
                         </li>
                     </th:block>
@@ -124,7 +123,7 @@
         }
     });
 
-    document.querySelector(".pagination").addEventListener("click", function (e) {
+    document.querySelector(".pagination_member_list").addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -135,7 +134,7 @@
         }
 
         const num = target.getAttribute("data-num");
-        const formObj = document.querySelector("form");
+        const formObj = document.querySelector(".memberAdminForm");
 
         formObj.innerHTML += `<input type='hidden' name='page' value='${num}'>`;
         formObj.submit();
@@ -147,16 +146,8 @@
         e.preventDefault();
         e.stopPropagation();
 
-        self.location = '/admin/admin_book_list';
+        self.location = '/admin/admin_member_list';
     }, false)
-
-    document.querySelector(".writeBtn").addEventListener("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        self.location = '/admin/add_book';
-    }, false)
-
 
 </script>
 </body>

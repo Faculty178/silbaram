@@ -1,5 +1,6 @@
 package com.project.silbaram.dto;
 
+import com.project.silbaram.vo.MemberVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,4 +37,7 @@ public class BoardDTO {
 
     @NotEmpty
     private String nickname;
+
+    // admin
+    private MemberVO memberVO;
 }

@@ -123,8 +123,8 @@
     </select>
 
     <select id="getCount" resultType="int">
-        select count(bkid)
-        from `book`
+        select count(mid)
+        from `member`
         <include refid="search"></include>
     </select>
 
@@ -132,6 +132,12 @@
         SELECT  *
         FROM `member`
         WHERE `email` = #{email}
+    </select>
+
+    <select id="memberById" resultType="com.project.silbaram.vo.MemberVO">
+        SELECT *
+        FROM `member`
+        WHERE `mid` = #{mid}
     </select>
 
 

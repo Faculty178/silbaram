@@ -7,6 +7,26 @@
     <title>회원정보수정</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link th:inline="css" th:href="@{/css/member_modify.css}" rel="stylesheet">
+    <script src="/js/signup.js"></script>
+    <script type="text/javascript" layout:fragment="script" th:inline="javascript">
+
+        function checkModify() {
+            $.ajax({
+                url: "/mypage/membermodify",
+                type: "POST",
+                data: $("form[name=frmMemberInsert]").serialize(),
+                success: function (data) {
+                    // Display an alert box if the member information is successfully updated
+                    alert("회원정보가 성공적으로 업데이트 되었습니다.");
+                },
+                error: function (data) {
+                    // Display an alert box if there is an error during the update process
+                    alert("회원정보 업데이트에 실패하였습니다.");
+                }
+            });
+        }
+
+    </script>
 </head>
 <body>
 <div layout:fragment="Content" class="modify_box">
@@ -15,27 +35,21 @@
         <form th:action="@{/mypage/membermodify}"  th:object="${memberDTO}"  method="post" name="frmMemberInsert">
             <input type="hidden" name="email">
 
-<!--            <div>-->
-<!--                <label for="email1">이메일:</label>-->
-<!--                <input type="text" id="email1" name="email1" th:field="*{email}" required/>-->
+            <div class="form-group row">
+                <label for="nickName">닉네임:</label>
+                <input type="text" id="nickName" name="nickName" th:field="*{nickName}" required>
+                <button type="button" onclick="checkNickName()">중복확인</button>
+                <span class="nickNameCheck"></span>
+            </div>
 
-<!--                <select id="email2" name="email2" onchange="addDomain()">-->
-<!--                    <option value="">도메인 선택</option>-->
-<!--                    <option value="@naver.com">@naver.com</option>-->
-<!--                    <option value="@gmail.com">@gmail.com</option>-->
-<!--                    <option value="@daum.net">@daum.net</option>-->
-<!--                    <option value="@hotmail.com">@hotmail.com</option>-->
-<!--                    <option value="@icloud.com">@icloud.com</option>-->
-<!--                </select>-->
-
-<!--                <button type="button" id="mail-Check-Btn">이메일 인증</button>-->
-<!--                <input class="mail-check-input" placeholder="인증번호 6자리를 입력해주세요." disabled="disabled" maxlength="6">-->
-<!--                <span id="mail-check-warn"></span>-->
-<!--            </div>-->
+            <div class="form-group row">
+                <label for="name">이름:</label>
+                <input name="name" id="name" type="text" th:field="*{name}" required>
+            </div>
 
             <div>
                 <label for="phoneNumber">(선택)전화번호:</label>
-                <input type="tel" id="phoneNumber" th:field="*{phoneNumber}" required />
+                <input type="tel" id="phoneNumber" th:field="*{phoneNumber}" />
             </div>
 
             <div>

@@ -28,4 +28,8 @@ public interface BoardService {
 
     PageResponseDTO<BoardDTO> listAll(PageRequestDTO pageRequestDTO);
 
+    BoardDTO getOneBoardById(Long bdid);
+
+    void adminBoardRemove(Long bdid);
+
 }

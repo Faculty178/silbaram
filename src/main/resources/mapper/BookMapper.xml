@@ -126,6 +126,8 @@
         having count(c.cateName) > 0
     </select>
 
+    <!--admin-->
+
     <select id="adminbookList" resultType="com.project.silbaram.vo.BookVO">
         SELECT *
         FROM book
@@ -134,15 +136,10 @@
     </select>
 
     <select id="getOneBookById" parameterType="Long" resultType="com.project.silbaram.vo.BookVO">
-        SELECT b.bkid, b.name, b.writer, b.publisher, b.price, b.synopsis, b.pages,
-               b.isbnNum, b.fileSize, b.voiceLength, b.bookUrl, b.bookTextUrl, b.bookImage,
-               c.cateName, l.language
-        FROM book b
-                 JOIN category c ON b.cid = c.cid
-                 JOIN language l ON b.lid = l.lgid
+        SELECT *
+        FROM `book`
         WHERE `bkid` = #{bkid}
     </select>
-    <!--mybatis는 getXXX, setXXX을 통해서 동작하기때문에 skip은 getSkip()을 호출-->
 
 
 </mapper>

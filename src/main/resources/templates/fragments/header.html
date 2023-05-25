@@ -27,20 +27,30 @@
         <div id="header_top">
             <div id="logo">
                 <a href="/index">
-                    <img th:src="@{/resources/logo.png}" />
+                    <img th:src="@{/resources/Logo.png}" />
                 </a>
             </div>
 
             <div id="header_searchbar">
                 <form name="main_searchbox" class="mainSearchForm" method="get" action="/products/list">
-                    <select title="검색 유형" id="msType">
-                        <option value="total">전체검색</option>
-                        <option value="name">제목 검색</option>
-                        <option value="writer">작가 검색</option>
-                    </select>
-                    <input type="text" id="msKeyword" placeholder="검색내용을 입력해주세요">
+                    <div th:if="${pageRequestDTO != null}">
+                        <select title="검색 유형" name="types" id="searchType">
+                            <option value="nw" th:selected="${pageRequestDTO.types == 'nw'}">전체검색</option>
+                            <option value="n" th:selected="${pageRequestDTO.types == 'n'}">제목 검색</option>
+                            <option value="w" th:selected="${pageRequestDTO.types == 'w'}">작가 검색</option>
+                        </select>
+                        <input type="text" name="keyword" th:value="${pageRequestDTO.keyword}" placeholder="검색내용을 입력해주세요">
+                    </div>
+                    <div th:if="${pageRequestDTO == null}">
+                        <select title="검색 유형" name="types">
+                            <option value="nw">전체검색</option>
+                            <option value="n">제목 검색</option>
+                            <option value="w">작가 검색</option>
+                        </select>
+                    </div>
+
                     <button type="submit">
-                        <img th:src="@{/resources/search.png}">
+                        <img th:src="@{/resources/search.png}" alt="Search">
                     </button>
                 </form>
             </div>

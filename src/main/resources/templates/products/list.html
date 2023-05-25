@@ -81,7 +81,7 @@
 							</li>
 
 							<th:block th:each="i: ${#numbers.sequence(responseDTO.start, responseDTO.end)}">
-								<li>
+								<li th:class="${responseDTO.page == i} ? 'page-item active' : 'page-item'">
 									<a th:data-num="${i}">[[${i}]]</a>
 								</li>
 							</th:block>

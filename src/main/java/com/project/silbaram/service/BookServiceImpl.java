@@ -75,8 +75,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDTO readOne(Long bkid) {
         BookVO bookVO = bookDAO.selectOne(bkid);
+        log.info("bookVO : " + bookVO);
         BookDTO bookDTO = modelMapper.map(bookVO, BookDTO.class);
         //vo로 받아서 DTO로 전달
+
 
         return bookDTO;
     }
@@ -144,12 +146,15 @@ public class BookServiceImpl implements BookService {
         log.info("ReviewList,,,");
         List<BookDTO> voList = bookDAO.adminbookList(pageRequestDTO).stream()
                 .map(dto -> modelMapper.map(dto, BookDTO.class)).collect(Collectors.toList());
-        log.info(voList);
+
 
         for (BookDTO dtoList : voList) {
-            dtoList.setCategoryVO(categoryDAO.getById(dtoList.getCid()));
             dtoList.setLanguageVO(languageDAO.getLanguageById(dtoList.getLid()));
+            dtoList.setCategoryVO(categoryDAO.getById(dtoList.getCid()));
+            dtoList.setLanguage(languageDAO.getLanguageById(dtoList.getLid()).getLanguage());
+            dtoList.setCateName(categoryDAO.getById(dtoList.getCid()).getCateName());
         }
+        log.info(voList);
         int total = bookDAO.getCount(pageRequestDTO);
 
         PageResponseDTO<BookDTO> pageResponseDTO = new PageResponseDTO<>(pageRequestDTO, voList, total);
@@ -162,6 +167,8 @@ public class BookServiceImpl implements BookService {
         BookVO bookVO = bookDAO.getOneBookById(bkid);
         log.info(bookVO);
         BookDTO bookDTO = modelMapper.map(bookVO, BookDTO.class);
+        bookDTO.setCategoryVO(categoryDAO.getById(bookDTO.getCid()));
+        bookDTO.setLanguageVO(languageDAO.getLanguageById(bookDTO.getLid()));
         log.info(bookDTO);
 
         return bookDTO;

@@ -55,7 +55,7 @@ public class BoardController {
         model.addAttribute("responseDTO", responseDTO);
         model.addAttribute("pageRequestDTO", pageRequestDTO);
 
-        return "redirect:/board/list_qna";
+        return "redirect:board/list_qna";
     }
 
 
