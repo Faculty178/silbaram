@@ -45,7 +45,7 @@ public class BoardController {
      */
     //문의글 리스트
     @GetMapping("/list_qna")
-    public String list(PageRequestDTO pageRequestDTO, Model model) {
+    public void list(PageRequestDTO pageRequestDTO, Model model) {
         log.info("문의글 " + pageRequestDTO);
         // 게시판 타입 지정
         pageRequestDTO.setPageType("Q");
@@ -55,7 +55,6 @@ public class BoardController {
         model.addAttribute("responseDTO", responseDTO);
         model.addAttribute("pageRequestDTO", pageRequestDTO);
 
-        return "redirect:board/list_qna";
     }
 
 
@@ -91,18 +90,30 @@ public class BoardController {
 
 
     //책 요청글 get / post
-    @GetMapping("/request_book_list")
-    public String registerRequestGET(PageRequestDTO pageRequestDTO, Model model) {
-        log.info("책 요청 리스트" + pageRequestDTO);
-        // 게시판 타입 지정
-        pageRequestDTO.setPageType("R");
+    @PostMapping("/request_book_list")
+    public String registerRequest(BoardDTO boardDTO, BindingResult bindingResult
+            , RedirectAttributes redirectAttributes, HttpSession session, Model model) {
+        log.info("POST request register...");
 
-        PageResponseDTO responseDTO = boardService.list(pageRequestDTO);
-        log.info("responseDTO {}", responseDTO);
-        model.addAttribute("responseDTO", responseDTO);
-        model.addAttribute("pageRequestDTO", pageRequestDTO);
+        Long mid = Long.valueOf(session.getAttribute("mid").toString());
 
-        return "board/request_book_list";
+        boardDTO.setPageType("R");
+        boardDTO.setMemberId(String.valueOf(mid));
+
+        if (bindingResult.hasErrors() || mid == null) {
+            log.info("Request register has error...");
+            redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/board/request_book_list";
+        }else {
+            if(boardDTO.getContent() == null || boardDTO.getContent() == "") {
+                model.addAttribute("msg", "내용을 작성해주세요");
+            }
+            else {
+                log.info(boardDTO);
+                boardService.register(boardDTO);
+            }
+        }
+        return "redirect:/board/request_book_list";
     }
 
     @PostMapping("/request_book_list")

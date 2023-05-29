@@ -42,7 +42,7 @@ document.addEventListener("scroll", e => {
 
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URL(location.href).searchParams;
-    const el = document.getElementById('msType');
+    const el = document.getElementById('searchType');
     const len = el.options.length;
 
     // 목록 페이지가 검색 목록을 보여주는 페이지라면 (검색결과 화면이라면)
@@ -61,9 +61,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-const pagination = document.querySelector(".pagination")
-if (pagination) {
-    pagination.addEventListener("click", function (e) {
+// const pagination = document.querySelector(".pagination")
+// if (pagination) {
+//     pagination.addEventListener("click", function (e) {
+//         e.preventDefault();
+//         e.stopPropagation();
+//
+//         const target = e.target;
+//
+//         if (target.tagName !== 'A') {
+//             return;
+//         }
+//
+//         const num = target.getAttribute("data-num");
+//         const formObj = document.querySelector("form");
+//         console.log(formObj);
+//
+//         formObj.innerHTML += `<input type='hidden' name='page' value='${num}'>`;
+//         formObj.submit();
+//
+//     }, false)
+//
+// }
+
+const listPagination = document.querySelector(".listPagination")
+if (listPagination) {
+    listPagination.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -84,12 +107,6 @@ if (pagination) {
 
 }
 
-document.querySelector(".clearBtn").addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    self.location = '/products/list';
-}, false)
 
 
 function goCategory(e) {

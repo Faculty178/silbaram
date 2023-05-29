@@ -90,7 +90,7 @@
 				<input type="hidden" id="rid" th:value="${mdrv.rid}">
 				<input type="hidden" id="rv_like" th:value="${mdrv.reviewLike}">
 			</div>
-			<form id="reviewForm" action="/silbaram/review/register" method="post">
+			<form id="reviewForm" action="/review/register" method="post">
 				<fieldset>
 					<legend>이 책을 추천하고싶나요?</legend>
 					<div>
@@ -108,12 +108,13 @@
 					<span>한글 기준 250자까지 작성가능</span>
 					<input type="hidden" name="mid" th:value="${session.mid}"/>
 					<input type="hidden" name="bkid" th:value="${dto.bkid}"/>
-					<textarea id="comment" th:name="content" th:maxlength="250" th:placeholder="${session.mid}? (${isBuyer} ?  (  ${isWrite} ? '이미 리뷰를 작성하셨습니다.'  : '리뷰를 작성해주세요.')  : '구매 후 작성 가능합니다.') : '로그인 이후 작성 가능합니다.' " autocomplete="off"></textarea>
+					<textarea id="comment" th:name="content" th:maxlength="250"
+							  th:placeholder="${session.mid}? (${isBuyer} ?  (  ${isWrite} ? '이미 리뷰를 작성하셨습니다.'  : '리뷰를 작성해주세요.')  : '구매 후 작성 가능합니다.') : '로그인 이후 작성 가능합니다.' "
+							  autocomplete="off"></textarea>
 				</div>
 
 				<input type="submit" id="submitBtn" th:if="${(isBuyer && !isWrite)} or ${isModify}" value="등록">
 				<input type="button" id="deleteBtn" onclick="onDelete(event)" value="삭제" style="display: none;">
-
 			</form>
 		</div>
 

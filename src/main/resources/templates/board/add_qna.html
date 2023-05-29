@@ -15,22 +15,24 @@
 			QnA Board Register
 		</div>
 		<div>
-			<form action="/silbaram/board/add_qna" method="post">
+			<form action="/board/add_qna" method="post">
 				<div>
 					<span>Title</span>
 					<input type="text" name="title" placeholder="Title">
 				</div>
 				<div>
 					<span>Content</span>
-					<textarea rows="5" name="content"></textarea>
+					<textarea name="content"></textarea>
 				</div>
 				<div>
-					<span>memberId</span>
-					<input type="text" name="memberId" th:value="${session.mid}" readonly>
-				
+					<span>nickname</span>
+					<input type="text" name="nickname" th:value="${nickname}" readonly>
+				</div>
+				<div>
+					<input type="hidden" name="memberId" th:value="${#session.getAttribute('mid')}" readonly>
 				</div>
 				<input type="hidden" name="pageType" value="Q">
-				
+
 				<div>
 					<div>
 						<button type="submit">Submit</button>
@@ -45,7 +47,7 @@
 <script layout:fragment="script" th:inline="javascript">
 	const errors = [[${errors}]]
 	console.log(errors);
-	
+
 	let errorMsg = '';
 	if (errors) {
 		for (let i = 0; i < errors.length; i++) {

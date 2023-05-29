@@ -50,7 +50,7 @@ public class MyBoardController {
         model.addAttribute("responseDTO", responseDTO);
         model.addAttribute("pageRequestDTO", pageRequestDTO);
 
-        return "/member/my_qna";
+        return "redirect:/board/my_qna";
     }
 
     //내가 쓴 요청글 리스트 출력
@@ -75,7 +75,7 @@ public class MyBoardController {
         model.addAttribute("responseDTO", responseDTO);
         model.addAttribute("pageRequestDTO", pageRequestDTO);
 
-        return "/member/my_request";
+        return "redirect:/board/my_request";
     }
 
     //내가 쓴 리뷰 리스트 출력
@@ -94,7 +94,7 @@ public class MyBoardController {
         model.addAttribute("responseDTO", responseDTO);
         model.addAttribute("pageRequestDTO", pageRequestDTO);
 
-        return "/member/my_review";
+        return "redirect:/board/my_review";
     }
 
     //문의글 QNA 삭제
@@ -110,7 +110,7 @@ public class MyBoardController {
             boardService.remove(bdid, mid);
         }
 
-        return "redirect:/silbaram/member/my_qna";
+        return "redirect:/board/my_qna";
     }
 
 
@@ -124,12 +124,12 @@ public class MyBoardController {
         String mid = session.getAttribute("mid").toString();
 
         if (mid == null) {
-            return "redirect:/silbaram/";
+            return "redirect:/";
         }
 
         boardService.remove(bdid, Long.valueOf(mid));
 
-        return "redirect:/member/my_qna";
+        return "redirect:/board/my_qna";
     }
 
     //내가 쓴 요청글 삭제
@@ -145,7 +145,7 @@ public class MyBoardController {
             boardService.remove(bdid, mid);
         }
 
-        return "redirect:/member/my_request";
+        return "redirect:/board/my_request";
     }
 
 
@@ -165,6 +165,6 @@ public class MyBoardController {
         //log.info("getRequestURL: " + request.getRequestURL());
         //  return "redirect:/"+
 
-        return "redirect:/member/my_review";
+        return "redirect:/board/my_review";
     }
 }

@@ -13,10 +13,7 @@
 	<div class="row mt-3">
 		<div>
 			<div>
-				Review Register
-			</div>
-			<div>
-				<form action="/silbaram/review/register" method="post">
+				<form action="/review/register" method="post">
 					<div>
 						<span>Title</span>
 						<input type="text" name="title" placeholder="Title">
@@ -44,7 +41,7 @@
 <script layout:fragment="script" th:inline="javascript">
 	const errors = [[${errors}]]
 	console.log(errors);
-	
+
 	let errorMsg = '';
 	if (errors) {
 		for (let i = 0; i < errors.length; i++) {

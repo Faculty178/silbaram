@@ -80,7 +80,7 @@
 		
 		const num = target.getAttribute("data-num");
 		
-		window.location.href = '/silbaram/member/my_qna?page=' + num
+		window.location.href = '/board/my_qna?page=' + num
 	}, false)
 	
 	function deleteBtn(e) {
@@ -91,7 +91,7 @@
 		if (myQnaConfirm) {
 			const formObj = document.querySelector(".myQna");
 			formObj.method = 'post'
-			formObj.action = '/silbaram/member/board/remove'
+			formObj.action = '/member/board/remove'
 			formObj.submit();
 		}
 	}

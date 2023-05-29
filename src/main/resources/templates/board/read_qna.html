@@ -15,7 +15,7 @@
 			QnA Board Read
 		</div>
 		<div>
-			<form action="/silbaram/board/add_qna" method="post">
+			<form action="/board/add_qna" method="post">
 				<div>
 					<span>Bdid</span>
 					<input type="text" th:value="${dto.bdid}" readonly>
@@ -32,21 +32,21 @@
 					<span>Nickname</span>
 					<input type="text" th:value="${dto.nickname}" readonly>
 				</div>
-				
+
 				<div>
 					<span>RegDate</span>
 					<input type="text" th:value="${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}"
 						   readonly>
 				</div>
-				
+
 				<div>
 					<div th:with="link = ${pageRequestDTO.getLink()}">
-						<a th:href="|@{/templates/board/list_qna}?${link}|" class="text-decoration-none">
+						<a th:href="|@/board/list_qna}?${link}|" class="text-decoration-none">
 							<button type="button">List</button>
 						</a>
-						
+
 						<a th:if="${#strings.equals(session.mid, dto.memberId)}"
-						   th:href="|@{/templates/board/modify_qna(bdid=${dto.bdid})}&${link}|"
+						   th:href="|@{/board/modify_qna(bdid=${dto.bdid})}&${link}|"
 						   class="text-decoration-none">
 							<button type="button">Modify</button>
 						</a>

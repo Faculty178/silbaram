@@ -46,11 +46,11 @@ public class ReviewController {
         if (bindingResult.hasErrors()) {
             log.info("review register has error...");
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
-            return "redirect:/silbaram/products/detail?bkid="+reviewDTO.getBkid();
+            return "redirect:/products/detail?bkid="+reviewDTO.getBkid();
         }
         log.info("REVIEW", reviewDTO);
         reviewService.register(reviewDTO);
-        return "redirect:/silbaram/products/detail?bkid="+reviewDTO.getBkid();
+        return "redirect:/products/detail?bkid="+reviewDTO.getBkid();
     }
 
     @GetMapping( "/modify")
@@ -70,7 +70,7 @@ public class ReviewController {
             log.info("modify has error...");
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
             redirectAttributes.addAttribute("rid", reviewDTO.getRid()); //tno가 쿼리스트링(like '?xx=1')으로 전달
-            return "redirect:/silbaram/review/modify";
+            return "redirect:/review/modify";
         }
         log.info(reviewDTO);
         reviewService.modify(reviewDTO);

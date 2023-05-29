@@ -9,7 +9,7 @@
 </head>
 <body>
 <div layout:fragment="Content">
-    <form id="form1" action="/silbaram/review/modify" method="post">
+    <form id="form1" action="/review/modify" method="post">
         <div id="rvCmt" class="row_txtArea">
             <span>
                 <label for="comment">한글 기준 250자까지 작성가능</label>
@@ -29,13 +29,13 @@
 
 
 <script layout:fragment="script" th:inline="javascript">
-    const formObj = document.querySelector("#form1");
+    const formObj = document.querySelector(".Rmform");
 
     document.querySelector("#removeBtn").addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
-        formObj.action = `/silbaram/review/remove`;
+        formObj.action = `/review/remove`;
         formObj.method = 'post';
         formObj.submit();
     }, false);

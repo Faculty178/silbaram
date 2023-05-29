@@ -33,4 +33,6 @@ public class ReviewDTO {
     private LocalDate regDate;
 
     private String nickname;
+
+    private String bookName;
 }

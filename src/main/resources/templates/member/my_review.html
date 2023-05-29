@@ -78,7 +78,7 @@
 				return;
 			}
 			const num = target.getAttribute("data-num");
-			window.location.href = '/silbaram/member/my_review?page=' + num
+			window.location.href = '/member/my_review?page=' + num
 		}, false)
 		
 		function deleteBtn(e) {
@@ -89,7 +89,7 @@
 			if (confirm) {
 				const formObj = document.querySelector("#reviewList");
 				formObj.method = 'post'
-				formObj.action = '/silbaram/member/review/remove'
+				formObj.action = '/board/review/remove'
 				formObj.submit();
 			}
 		}
