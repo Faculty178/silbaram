@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+<head>
+  <meta charset="UTF-8">
+  <title>회원탈퇴</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link th:inline="css" th:href="@{/css/member_quit.css}" rel="stylesheet">
+  <style>
+    div.hidden {
+      display: none;
+    }
+  </style>
+
+
+</head>
+<body>
+
+<div layout:fragment="Content" class="quit_box">
+  <h3>회원탈퇴</h3>
+  <div class="form_box">
+    <form th:action="@{/mypage/memberquitkakao}"  th:object="${memberDTO}" method="post" name="frmPw">
+      <div class="form-group row">
+        <p>정말 탈퇴하시겠습니까?</p>
+      </div>
+      <div class="form-group row">
+        <button type="submit" class="quit-submit">탈퇴할래요</button>
+        <button type="button"><a href="/">탈퇴 안 할래요</a></button>
+      </div>
+    </form >
+  </div>
+</div>
+<script src="/js/signup.js"></script>
+<script type="text/javascript">
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector('.quit-submit').addEventListener('click', function () {
+      const msg = "[[${msg}]]";
+      if (msg !== null && msg !== "") {
+        alert(msg);
+      }
+      pwCheck();
+    })
+
+  })
+</script>
+
+
+</body>
+
+</html>

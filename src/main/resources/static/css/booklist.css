@@ -158,3 +158,9 @@ fieldset{
     font-size: 14px;
     font-style: italic;
 }
+
+#imgBlock img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

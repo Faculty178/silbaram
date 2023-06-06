@@ -1,49 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
 <head>
     <meta charset="UTF-8">
     <title>비밀번호 변경</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        div.hidden {
-            display: none;
-        }
-    </style>
-
+    <link th:inline="css" th:href="@{/css/member_quit.css}" rel="stylesheet">
 
 </head>
 <body>
+<div layout:fragment="Contlent" class="quit_box">
+    <h3>회원탈퇴</h3>
+    <div class="form_box">
+        <form th:action="@{/mypage/memberquit}"  th:object="${memberDTO}" method="post" name="frmPw">
+            <div>
+                <div>
+                    <label for="password">기존 비밀번호:</label>
+                    <input type="password" id="password" name="oldPassword" onchange="pwCheck()" maxlength="20 "required/>
+                    <span id="pwValid"></span><br>
+                    <label for="password2">비밀번호 재확인:</label>
+                    <input type="password" id="password2" name="password2" onchange="pwCheck()" maxlength="20" required/>
+                    <span id="pwSame"></span><br>
+                </div>
+                <div>
+                    <button type="submit" class="quit-submit">회원탈퇴</button>
+                </div>
+            </div>
 
-<h1>비밀번호 변경</h1>
-<ul>
-    <li>
-        <a href="/index">홈</a>
-    </li>
-    <li th:if="${session.mid}">
-        <a href="/mypage/membermodify">회원정보 수정</a>
-    </li>
-    <li th:if="${session.mid}">
-        <a href="/mypage/mybooks">서재</a>
-    </li>
-</ul>
-
-<form th:action="@{/mypage/memberquit}"  th:object="${memberDTO}" method="post" name="frmPw">
-
-    <div>
-        <div>
-            <label for="password">기존 비밀번호:</label>
-            <input type="password" id="password" name="oldPassword" onchange="pwCheck()" maxlength="20 "required/>
-            <span id="pwValid"></span><br>
-            <label for="password2">비밀번호 재확인:</label>
-            <input type="password" id="password2" name="password2" onchange="pwCheck()" maxlength="20" required/>
-            <span id="pwSame"></span><br>
-        </div>
-        <div>
-            <button type="submit" class="quit-submit">회원탈퇴</button>
-        </div>
+        </form >
     </div>
+</div>
 
-</form >
 <script src="/js/signup.js"></script>
 <script type="text/javascript">
 

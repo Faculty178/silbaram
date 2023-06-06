@@ -48,7 +48,7 @@ public class MemberController {
         if(mid == null) {
             log.info("login fails!");
             model.addAttribute("msg","아이디와 비밀번호를 확인해주세요");
-            return "redirect:/login";
+            return "member/login";
         }
 
         else  {
@@ -114,7 +114,12 @@ public class MemberController {
         model.addAttribute("memberDTO", memberDTO);
         log.info(memberDTO);
 
-        return "member/mypage";
+        if (memberDTO.getUserId().startsWith("ka_")) {
+            return "member/mypage_kakao";
+        }else {
+            return "member/mypage";
+        }
+
     }
 
 }
